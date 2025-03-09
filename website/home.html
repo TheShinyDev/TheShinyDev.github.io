@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <style>
+    
+            body {
+    
+                background-color: black;
+    
+                color: white;
+    
+            }
+    
+        </style>
+    
+    </head>
+    </html>
+<html>
+<head>
+    <title>Howdy, Friend!</title>
+</head>
+<body>
+    <h1>Welcome to the Nycodo Website!</h1>
+    <p>This is the homepage for my game studio. Founded by me, ShinyDevJN.</p>
+    <p>I've got a few projects in the works. Keep a lookout for updates real soon!</p>
+</body>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #gif {
+            width: 200px;
+            cursor: pointer;
+        }
+        #playButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <audio id="music" loop>
+        <source src="Sonic CD - Unknown Menu Track.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div>
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+    </div>
+    
+    <img id="gif" src="cd_009.gif" alt="Animated GIF">
+    
+    <button id="playButton">Play Music</button>
+    
+    <script>
+        const audio = document.getElementById("music");
+        const volumeControl = document.getElementById("volume");
+        const gif = document.getElementById("gif");
+        const playButton = document.getElementById("playButton");
+        let isPlaying = false;
+        let gifSrc = gif.src;
+        
+        // Ensure audio loops automatically
+        audio.loop = true;
+        
+        // Try autoplay, show play button if blocked
+        document.addEventListener("DOMContentLoaded", () => {
+            audio.play().then(() => {
+                isPlaying = true;
+            }).catch(() => {
+                playButton.style.display = "block";
+            });
+        });
+        
+        // Play button event
+        playButton.addEventListener("click", () => {
+            audio.play();
+            isPlaying = true;
+            playButton.style.display = "none";
+        });
+        
+        // Volume control
+        volumeControl.addEventListener("input", function() {
+            audio.volume = this.value;
+        });
+        
+        // Pause/resume on GIF click
+        gif.addEventListener("click", function() {
+            if (isPlaying) {
+                audio.pause();
+                gif.src = "cd_009.png"; // Replace with a static version of the GIF
+            } else {
+                audio.play();
+                gif.src = gifSrc; // Reset to original GIF
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
